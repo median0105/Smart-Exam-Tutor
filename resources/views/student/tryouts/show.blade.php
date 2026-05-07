@@ -1,0 +1,7 @@
+<x-app-layout>
+    <x-slot name="header"><div><p class="text-sm uppercase tracking-[0.3em] text-blue-200">{{ $tryout->subject->name }}</p><h1 class="mt-2 text-3xl font-semibold text-white">{{ $tryout->title }}</h1></div></x-slot>
+    <div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+        <div class="panel p-6"><h2 class="text-xl font-semibold">Tentang try out</h2><p class="mt-4 text-slate-600">{{ $tryout->description }}</p><div class="mt-6 grid gap-4 sm:grid-cols-3"><div class="rounded-3xl bg-slate-50 p-4"><p class="text-sm text-slate-500">Jumlah soal</p><p class="mt-2 text-2xl font-semibold">{{ $tryout->question_count }}</p></div><div class="rounded-3xl bg-slate-50 p-4"><p class="text-sm text-slate-500">Durasi</p><p class="mt-2 text-2xl font-semibold">{{ $tryout->duration_minutes }}m</p></div><div class="rounded-3xl bg-slate-50 p-4"><p class="text-sm text-slate-500">Mode</p><p class="mt-2 text-2xl font-semibold">{{ $tryout->difficulty_mix }}</p></div></div></div>
+        <div class="panel p-6"><h2 class="text-xl font-semibold">Topik tercakup</h2><div class="mt-4 flex flex-wrap gap-2">@foreach($tryout->questions->pluck('topic.name')->unique() as $topicName)<span class="rounded-full bg-blue-50 px-3 py-2 text-sm text-blue-700">{{ $topicName }}</span>@endforeach</div><form method="POST" action="{{ route('student.tryouts.start', $tryout) }}" class="mt-8">@csrf<button class="w-full rounded-full bg-slate-900 px-5 py-4 text-sm font-semibold text-white">Mulai try out</button></form></div>
+    </div>
+</x-app-layout>

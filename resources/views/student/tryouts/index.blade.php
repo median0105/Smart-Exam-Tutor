@@ -1,0 +1,4 @@
+<x-app-layout>
+    <x-slot name="header"><div><p class="text-sm uppercase tracking-[0.3em] text-blue-200">Try Out Center</p><h1 class="mt-2 text-3xl font-semibold text-white">Pilih paket latihan adaptif</h1></div></x-slot>
+    <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">@foreach($tryouts as $tryout)<div class="panel p-6"><p class="text-sm text-slate-500">{{ $tryout->subject->name }}</p><h2 class="mt-3 text-2xl font-semibold">{{ $tryout->title }}</h2><p class="mt-3 text-sm text-slate-600">{{ $tryout->description }}</p><div class="mt-5 flex gap-3 text-xs text-slate-500"><span>{{ $tryout->question_count }} soal</span><span>{{ $tryout->duration_minutes }} menit</span><span>{{ $tryout->difficulty_mix }}</span></div><a href="{{ route('student.tryouts.show', $tryout) }}" class="mt-5 inline-flex rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white">Lihat detail</a></div>@endforeach</div>
+</x-app-layout>

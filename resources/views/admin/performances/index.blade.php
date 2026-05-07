@@ -1,0 +1,4 @@
+<x-app-layout>
+    <x-slot name="header"><div><p class="text-sm uppercase tracking-[0.3em] text-blue-200">Student Model</p><h1 class="mt-2 text-3xl font-semibold text-white">Statistik Performa Siswa</h1></div></x-slot>
+    <div class="panel p-6"><div class="overflow-x-auto"><table class="min-w-full text-left text-sm"><thead class="text-slate-500"><tr><th class="py-3">Siswa</th><th class="py-3">Try Out</th><th class="py-3">Skor</th><th class="py-3">Benar/Salah</th><th class="py-3">Level</th></tr></thead><tbody>@foreach($attempts as $attempt)<tr class="border-t border-slate-100"><td class="py-4">{{ $attempt->user->name }}</td><td class="py-4">{{ $attempt->tryout->title }}</td><td class="py-4">{{ $attempt->score }}</td><td class="py-4">{{ $attempt->correct_answers }}/{{ $attempt->wrong_answers }}</td><td class="py-4">{{ $attempt->detected_level }}</td></tr>@endforeach</tbody></table></div><div class="mt-6">{{ $attempts->links() }}</div></div>
+</x-app-layout>
