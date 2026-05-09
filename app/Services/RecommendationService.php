@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 
 class RecommendationService
 {
-    public function refreshForAttempt(TryoutAttempt $attempt): Collection
+    public function refreshForAttempt(TryoutAttempt $attempt, array $topicAdvice = []): Collection
     {
         $attempt->loadMissing([
             'tryout.subject',
@@ -73,7 +73,8 @@ class RecommendationService
                     $item['model']->topic->name,
                     $attempt->detected_level,
                     $item['category'],
-                    $item['matched_keywords']
+                    $item['matched_keywords'],
+                    $topicAdvice
                 ),
             ]));
         }
@@ -195,11 +196,18 @@ class RecommendationService
             ->all();
     }
 
-    private function buildReason(string $topicName, ?string $level, string $category, array $matchedKeywords): string
+    private function buildReason(string $topicName, ?string $level, string $category, array $matchedKeywords, array $topicAdvice = []): string
     {
         $itemName = $category === 'material' ? 'materi' : 'soal lanjutan';
         $levelLabel = $level ? "level {$level}" : 'level saat ini';
         $keywords = $matchedKeywords === [] ? $topicName : implode(', ', array_slice($matchedKeywords, 0, 3));
+        $externalAdvice = collect($topicAdvice)->first(function ($advice, $topic) use ($topicName) {
+            return Str::lower((string) $topic) === Str::lower($topicName);
+        });
+
+        if (is_string($externalAdvice) && $externalAdvice !== '') {
+            return "Direkomendasikan karena {$itemName} ini mirip dengan kelemahan Anda pada topik {$topicName}. Fokus: {$externalAdvice}";
+        }
 
         return "Direkomendasikan karena {$itemName} ini mirip dengan kelemahan Anda pada topik {$topicName}. Kata kunci yang cocok: {$keywords}. Cocok untuk {$levelLabel}.";
     }

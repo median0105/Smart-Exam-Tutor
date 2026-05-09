@@ -11,9 +11,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-['Outfit',sans-serif]">
+<body class="h-screen overflow-hidden font-['Outfit',sans-serif]">
     <div
-        class="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.4),_transparent_24%),radial-gradient(circle_at_85%_15%,_rgba(139,92,246,0.33),_transparent_24%),linear-gradient(180deg,_#020617,_#0f172a_45%,_#111827)] text-white">
+        class="relative h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.4),_transparent_24%),radial-gradient(circle_at_85%_15%,_rgba(139,92,246,0.33),_transparent_24%),linear-gradient(180deg,_#020617,_#0f172a_45%,_#111827)] text-white">
 
         <!-- Decorative elements -->
         <div class="pointer-events-none absolute inset-0">
@@ -44,74 +44,74 @@
             </svg>
         </div>
 
-        <div class="relative z-10 mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between">
+        <div class="relative z-10 mx-auto flex h-full max-w-7xl flex-col px-4 py-4 sm:px-6 sm:py-6 lg:px-8 lg:py-8">
+            <div class="flex items-center justify-between gap-3">
                 <div class="flex items-center gap-3">
                     <div
-                        class="flex h-16 w-16 items-center justify-center rounded-[22px] border border-white/20 bg-white/12 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-md">
-                        <x-application-logo class="h-10 w-10" />
+                        class="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-white/12 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-md sm:h-14 sm:w-14 lg:h-16 lg:w-16 lg:rounded-[22px]">
+                        <x-application-logo class="h-8 w-8 sm:h-9 sm:w-9 lg:h-10 lg:w-10" />
                     </div>
                     <div>
-                        <p class="text-sm uppercase tracking-[0.3em] text-blue-200/80">Intelligent Tutoring System</p>
-                        <p class="text-xl font-semibold">Smart Exam Tutor</p>
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-blue-200/80 sm:text-xs lg:text-sm lg:tracking-[0.3em]">Intelligent Tutoring System</p>
+                        <p class="text-base font-semibold sm:text-lg lg:text-xl">Smart Exam Tutor</p>
                     </div>
                 </div>
-                <div class="flex gap-3">
+                <div class="flex shrink-0 gap-2 sm:gap-3">
                     <a href="{{ route('login') }}"
-                        class="rounded-full border border-white/15 px-5 py-3 text-sm font-medium text-white/90">Masuk</a>
+                        class="rounded-full border border-white/15 px-3 py-2 text-xs font-medium text-white/90 transition duration-200 hover:border-blue-300/60 hover:bg-blue-400/15 hover:text-white sm:px-4 sm:text-sm lg:px-5 lg:py-3">Masuk</a>
                     <a href="{{ route('register') }}"
-                        class="rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-900">Mulai Belajar</a>
+                        class="rounded-full bg-white px-3 py-2 text-xs font-semibold text-slate-900 transition duration-200 hover:bg-gradient-to-r hover:from-blue-200 hover:to-violet-200 hover:text-slate-950 sm:px-4 sm:text-sm lg:px-5 lg:py-3">Mulai Belajar</a>
                 </div>
             </div>
 
-            <section class="grid gap-10 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+            <section class="grid flex-1 items-center gap-5 py-4 sm:py-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-8 lg:py-8">
                 <div>
                     <span
-                        class="rounded-full border border-blue-300/30 bg-blue-400/10 px-4 py-2 text-sm text-blue-100">Adaptive
+                        class="inline-flex rounded-full border border-blue-300/30 bg-blue-400/10 px-3 py-1.5 text-xs text-blue-100 sm:px-4 sm:py-2 sm:text-sm">Adaptive
                         try out, feedback otomatis, rekomendasi personal</span>
-                    <h1 class="mt-6 max-w-3xl text-5xl font-semibold leading-tight md:text-6xl">
+                    <h1 class="mt-4 max-w-3xl text-3xl font-semibold leading-tight sm:mt-5 sm:text-4xl lg:text-5xl xl:text-6xl">
                         Platform try out cerdas yang membaca
                         <span
                             class="bg-gradient-to-r from-blue-300 via-white to-violet-300 bg-clip-text text-transparent">kekuatan
                             dan kelemahan siswa</span>
                         secara real-time.
                     </h1>
-                    <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+                    <p class="mt-4 max-w-2xl text-sm leading-6 text-slate-300 sm:text-base sm:leading-7 lg:text-lg lg:leading-8">
                         Smart Exam Tutor menggabungkan bank soal, analisis topik, klasifikasi level dengan KNN, dan
                         rekomendasi materi berbasis cosine similarity untuk membentuk pengalaman belajar yang
                         benar-benar adaptif.
                     </p>
-                    <div class="mt-10 flex flex-wrap gap-4">
+                    <div class="mt-5 flex flex-wrap gap-3 sm:mt-7 sm:gap-4">
                         <a href="{{ route('register') }}"
-                            class="rounded-full bg-white px-6 py-4 text-sm font-semibold text-slate-900 shadow-xl shadow-blue-500/20">Daftar
+                            class="rounded-full bg-white px-4 py-2.5 text-xs font-semibold text-slate-900 shadow-xl shadow-blue-500/20 transition duration-200 hover:bg-gradient-to-r hover:from-blue-200 hover:to-violet-200 hover:text-slate-950 hover:shadow-blue-400/30 sm:px-5 sm:py-3 sm:text-sm lg:px-6 lg:py-4">Daftar
                             sebagai siswa</a>
                         <a href="{{ route('login') }}"
-                            class="rounded-full border border-white/15 px-6 py-4 text-sm font-medium text-white">Masuk
+                            class="rounded-full border border-white/15 px-4 py-2.5 text-xs font-medium text-white transition duration-200 hover:border-blue-300/60 hover:bg-blue-400/15 hover:text-white sm:px-5 sm:py-3 sm:text-sm lg:px-6 lg:py-4">Masuk
                             ke dashboard</a>
                     </div>
                 </div>
 
-                <div class="panel-dark p-6">
-                    <div class="rounded-[28px] bg-gradient-to-br from-blue-500/15 to-violet-500/15 p-6">
-                        <div class="grid gap-4 sm:grid-cols-2">
-                            <div class="rounded-3xl bg-white/10 p-5">
+                <div class="panel-dark hidden p-4 md:block lg:p-6">
+                    <div class="rounded-3xl bg-gradient-to-br from-blue-500/15 to-violet-500/15 p-4 lg:rounded-[28px] lg:p-6">
+                        <div class="grid gap-3 sm:grid-cols-2 lg:gap-4">
+                            <div class="rounded-3xl bg-white/10 p-4 lg:p-5">
                                 <p class="text-sm text-blue-100">Level siswa</p>
-                                <p class="mt-3 text-3xl font-semibold">Menengah</p>
+                                <p class="mt-2 text-2xl font-semibold lg:mt-3 lg:text-3xl">Menengah</p>
                                 <span
-                                    class="mt-4 inline-flex rounded-full bg-emerald-400/20 px-3 py-1 text-xs text-emerald-200">Naik
+                                    class="mt-3 inline-flex rounded-full bg-emerald-400/20 px-3 py-1 text-xs text-emerald-200 lg:mt-4">Naik
                                     12%</span>
                             </div>
-                            <div class="rounded-3xl bg-white/10 p-5">
+                            <div class="rounded-3xl bg-white/10 p-4 lg:p-5">
                                 <p class="text-sm text-blue-100">Topik lemah</p>
-                                <p class="mt-3 text-3xl font-semibold">2</p>
-                                <p class="mt-4 text-xs text-slate-300">Persamaan Linear, Peluang</p>
+                                <p class="mt-2 text-2xl font-semibold lg:mt-3 lg:text-3xl">2</p>
+                                <p class="mt-3 text-xs text-slate-300 lg:mt-4">Persamaan Linear, Peluang</p>
                             </div>
                         </div>
-                        <div class="mt-4 rounded-3xl bg-slate-950/40 p-5">
+                        <div class="mt-3 rounded-3xl bg-slate-950/40 p-4 lg:mt-4 lg:p-5">
                             <p class="text-sm text-slate-300">Feedback tutor</p>
-                            <p class="mt-3 text-lg font-medium">Fokuskan 2 sesi belajar berikutnya pada Persamaan Linear
+                            <p class="mt-2 text-base font-medium lg:mt-3 lg:text-lg">Fokuskan 2 sesi belajar berikutnya pada Persamaan Linear
                                 sebelum lanjut ke soal campuran sulit.</p>
-                            <div class="mt-5">
+                            <div class="mt-4 lg:mt-5">
                                 <div class="mb-2 flex items-center justify-between text-xs text-slate-300">
                                     <span>Progress Mastery</span>
                                     <span>72%</span>

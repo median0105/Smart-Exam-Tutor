@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 class Question extends Model
 {
     protected $fillable = [
+        'external_source',
+        'external_id',
         'subject_id',
         'topic_id',
         'body',

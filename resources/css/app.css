@@ -25,8 +25,29 @@
         @apply inline-flex rounded-full px-3 py-1 text-xs font-semibold;
     }
 
+    .ui-pill {
+        @apply inline-flex min-h-7 items-center rounded-full px-3 py-1 text-xs font-semibold leading-tight;
+    }
+
+    .ui-pill-soft {
+        @apply ui-pill bg-slate-100 text-slate-700;
+    }
+
+    .ui-pill-brand {
+        @apply ui-pill bg-blue-50 text-blue-700 ring-1 ring-blue-200;
+    }
+
     .input-shell {
         @apply mt-2 w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-2.5 text-sm text-white placeholder:text-slate-300/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-md transition focus:border-cyan-300/60 focus:outline-none focus:ring-2 focus:ring-cyan-300/25;
+    }
+
+    .admin-input-shell {
+        @apply border-slate-300/80 bg-white text-sm font-semibold text-slate-900 placeholder:font-medium placeholder:text-slate-600 shadow-sm focus:border-blue-500 focus:ring-blue-200;
+    }
+
+    .admin-input-shell option {
+        color: #0f172a;
+        font-weight: 600;
     }
 
     .glass-card {

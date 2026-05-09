@@ -17,10 +17,10 @@
 
 <body class="font-['Outfit',sans-serif] antialiased">
     <div
-        class="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.35),_transparent_28%),radial-gradient(circle_at_top_right,_rgba(139,92,246,0.25),_transparent_32%),linear-gradient(180deg,_#020617,_#0f172a_45%,_#111827)]">
+        class="relative isolate min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.35),_transparent_28%),radial-gradient(circle_at_top_right,_rgba(139,92,246,0.25),_transparent_32%),linear-gradient(180deg,_#020617,_#0f172a_45%,_#111827)]">
 
         <!-- Decorative elements -->
-        <div class="pointer-events-none absolute inset-0">
+        <div class="pointer-events-none absolute inset-0 -z-10 opacity-70">
             <div class="deco-ring left-[9%] top-[14%] hidden h-20 w-20 lg:block"></div>
             <div class="deco-ring bottom-[12%] right-[8%] hidden h-28 w-28 lg:block"></div>
             <div class="deco-pill left-[11%] top-[33%] hidden h-10 w-24 -rotate-45 lg:block"></div>
@@ -48,9 +48,13 @@
             </svg>
         </div>
 
-        @include('layouts.navigation')
+        <div class="relative z-50">
+            @include('layouts.navigation')
+        </div>
 
-        <main class="mx-auto max-w-7xl px-4 pb-12 pt-6 sm:px-6 lg:px-8">
+        <div class="h-20"></div>
+
+        <main class="relative z-10 mx-auto max-w-7xl px-4 pb-12 pt-6 sm:px-6 lg:px-8">
             @isset($header)
                 <div class="mb-6 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
                     <div>
@@ -63,6 +67,13 @@
 
             {{ $slot }}
         </main>
+
+        <button id="scrollToTopBtn" type="button" aria-label="Kembali ke atas"
+            class="pointer-events-none fixed bottom-6 right-6 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-slate-900/80 text-white opacity-0 shadow-lg backdrop-blur transition duration-300 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-300/50">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+            </svg>
+        </button>
     </div>
 </body>
 

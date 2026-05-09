@@ -12,6 +12,7 @@ class TryoutEvaluationService
     public function __construct(
         private readonly KnnClassifierService $classifier,
         private readonly RecommendationService $recommendationService,
+        private readonly GoogleLearningRecommendationService $googleLearningRecommendationService,
     ) {
     }
 
@@ -98,9 +99,40 @@ class TryoutEvaluationService
                 'study_advice' => $this->buildStudyAdvice($classification['level'], $weakTopics->pluck('name')->all()),
             ])->save();
 
+            $wrongRatio = ($wrong + $correct) > 0 ? $wrong / ($wrong + $correct) : 0;
+            $topicAdvice = [];
+
+            if ($wrongRatio >= 0.35) {
+                $aiRecommendation = $this->googleLearningRecommendationService->generate([
+                    'subject' => $attempt->tryout->subject->name ?? 'Try Out',
+                    'score' => $score,
+                    'wrong_answers' => $wrong,
+                    'correct_answers' => $correct,
+                    'level' => $classification['level'],
+                    'weak_topics' => $weakTopics->map(function ($topic) use ($weaknessVector) {
+                        return [
+                            'name' => $topic->name,
+                            'wrong_ratio' => (float) ($weaknessVector[$topic->id] ?? 0),
+                        ];
+                    })->values()->all(),
+                ]);
+
+                if (is_array($aiRecommendation)) {
+                    $topicAdvice = $aiRecommendation['topic_advice'] ?? [];
+
+                    $attempt->forceFill([
+                        'automated_feedback' => $aiRecommendation['feedback'] ?: $attempt->automated_feedback,
+                        'study_advice' => $aiRecommendation['study_advice'] ?: $attempt->study_advice,
+                    ])->save();
+                }
+            }
+
             $this->updateStudentProfile($attempt);
             $this->updateMasteries($attempt, $topicStats);
-            $this->recommendationService->refreshForAttempt($attempt->fresh(['tryout.subject', 'answers', 'recommendations']));
+            $this->recommendationService->refreshForAttempt(
+                $attempt->fresh(['tryout.subject', 'answers', 'recommendations']),
+                $topicAdvice
+            );
 
             return $attempt->fresh(['tryout.subject', 'answers.question.topic', 'recommendations.recommendable']);
         });

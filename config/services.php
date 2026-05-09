@@ -35,4 +35,23 @@ return [
         ],
     ],
 
+    'question_bank' => [
+        'provider' => env('QUESTION_BANK_PROVIDER', 'opentdb'),
+        'base_url' => env('QUESTION_BANK_BASE_URL', 'https://opentdb.com'),
+        'token' => env('QUESTION_BANK_TOKEN'),
+        'endpoint' => env('QUESTION_BANK_ENDPOINT', '/api.php'),
+        'timeout' => (int) env('QUESTION_BANK_TIMEOUT', 15),
+    ],
+
+    'google_ai' => [
+        'api_key' => env('GOOGLE_AI_API_KEY'),
+        'model' => env('GOOGLE_AI_MODEL', 'gemini-1.5-flash'),
+        'timeout' => (int) env('GOOGLE_AI_TIMEOUT', 20),
+    ],
+
+    'google' => [
+        'api_key' => env('GOOGLE_API_KEY'),
+        'timeout' => (int) env('GOOGLE_TIMEOUT', 20),
+    ],
+
 ];

@@ -18,7 +18,7 @@
         ];
 @endphp
 
-<nav x-data="{ open: false }" class="border-b border-white/10 bg-slate-950/50 backdrop-blur-xl">
+<nav x-data="{ open: false }" class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-slate-950/75 backdrop-blur-xl">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex min-h-20 items-center justify-between gap-4">
             <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
