@@ -1,58 +1,171 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Smart Exam Tutor
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Platform tryout online adaptif berbasis Laravel untuk membantu siswa belajar lebih terarah melalui analisis hasil ujian dan rekomendasi belajar personal.
 
-## About Laravel
+## ✨ Highlight
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- 🧑‍🏫 Role-based system: `Admin` dan `Student`
+- 📝 Tryout end-to-end: mulai, kerjakan, submit, lihat hasil
+- 📊 Analisis performa per topik (weakness & mastery)
+- 🧠 Klasifikasi level siswa: `Pemula`, `Menengah`, `Mahir` (KNN)
+- 🎯 Rekomendasi materi dan soal lanjutan berbasis `cosine similarity`
+- 🤖 Integrasi Google Gemini untuk feedback belajar otomatis
+- 🗂️ Sinkronisasi bank soal eksternal
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🧩 Fitur Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Untuk Admin
+- Kelola mata pelajaran (`subjects`)
+- Kelola topik (`topics`)
+- Kelola materi belajar (`learning materials`)
+- Kelola soal + opsi jawaban + tingkat kesulitan
+- Sinkronisasi soal dari provider eksternal
+- Kelola paket tryout
+- Lihat performa siswa
 
-## Learning Laravel
+### Untuk Student
+- Akses dashboard pembelajaran
+- Ikut tryout berdasarkan paket tersedia
+- Dapatkan skor, statistik benar/salah, dan feedback otomatis
+- Lihat analisis kelemahan topik
+- Dapat rekomendasi materi, soal lanjutan, dan resource video belajar
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ⚙️ Tech Stack
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Backend:** Laravel 13, PHP 8.3+
+- **Frontend:** Blade, TailwindCSS, Alpine.js, Vite
+- **Database:** MySQL/MariaDB (disarankan)
+- **AI Integration:** Google Generative Language API (Gemini)
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## 🚀 Instalasi Lokal
 
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### 1. Clone repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/USERNAME/Smart-Exam-Tutor.git
+cd Smart-Exam-Tutor
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Install dependency backend & frontend
 
-## Contributing
+```bash
+composer install
+npm install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Buat file environment
 
-## Code of Conduct
+```bash
+cp .env.example .env
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Jika di Windows PowerShell:
 
-## Security Vulnerabilities
+```powershell
+Copy-Item .env.example .env
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 4. Konfigurasi `.env`
 
-## License
+Ubah bagian penting berikut:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```env
+APP_NAME="Smart Exam Tutor"
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://localhost:8000
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=smart_exam_tutor
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Jika ingin aktifkan fitur AI Gemini:
+
+```env
+GOOGLE_AI_API_KEY=your_api_key_here
+GOOGLE_AI_MODEL=gemini-1.5-flash
+GOOGLE_AI_TIMEOUT=20
+```
+
+Jika ingin aktifkan sinkronisasi bank soal eksternal:
+
+```env
+QUESTION_BANK_PROVIDER=opentdb
+QUESTION_BANK_BASE_URL=https://opentdb.com
+QUESTION_BANK_ENDPOINT=/api.php
+QUESTION_BANK_TIMEOUT=15
+QUESTION_BANK_TOKEN=
+```
+
+### 5. Generate app key
+
+```bash
+php artisan key:generate
+```
+
+### 6. Migrasi database
+
+```bash
+php artisan migrate
+```
+
+### 7. (Opsional) Seed data awal
+
+```bash
+php artisan db:seed
+```
+
+### 8. Jalankan aplikasi
+
+Jalankan backend:
+
+```bash
+php artisan serve
+```
+
+Jalankan Vite (terminal terpisah):
+
+```bash
+npm run dev
+```
+
+Akses aplikasi di `http://127.0.0.1:8000`.
+
+## 🛠️ Perintah Penting
+
+```bash
+# Menjalankan test
+php artisan test
+
+# Build asset production
+npm run build
+
+# Sinkronisasi soal eksternal (jika tersedia command)
+php artisan app:sync-external-questions
+```
+
+## 📁 Struktur Singkat
+
+```text
+app/
+  Http/Controllers/Admin      -> fitur manajemen admin
+  Http/Controllers/Student    -> dashboard, tryout, insight siswa
+  Services/                   -> evaluasi tryout, klasifikasi, rekomendasi
+database/migrations/          -> skema tabel inti sistem
+resources/views/              -> tampilan Blade admin & student
+routes/web.php                -> seluruh routing web
+```
+
+## 🔐 Catatan Akses
+
+- Middleware `role:admin` untuk area admin
+- Middleware `role:student` untuk area student
+- Auth menggunakan Laravel Breeze
+
+## 📄 License
+
+Project ini menggunakan lisensi [MIT](https://opensource.org/licenses/MIT).
